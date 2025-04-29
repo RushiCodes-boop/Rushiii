@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile Fix -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rushikesh Chandanshiv</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -87,8 +87,9 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             box-shadow: 0 0 20px rgba(0, 255, 234, 0.4);
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         img {
@@ -141,6 +142,26 @@
                     border-color: #00ffea;
                 }
 
+        .discord-status {
+            margin-top: 25px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+            .discord-status img {
+                width: 100%;
+                max-width: 380px;
+                border-radius: 12px;
+                border: 2px solid #00ffea;
+                box-shadow: 0 0 15px rgba(0, 255, 234, 0.6), 0 0 25px rgba(0, 255, 234, 0.3);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+                .discord-status img:hover {
+                    transform: scale(1.02);
+                    box-shadow: 0 0 25px rgba(0, 255, 234, 0.8), 0 0 45px rgba(0, 255, 234, 0.4);
+                }
+
         .footer {
             position: fixed;
             bottom: 10px;
@@ -151,7 +172,6 @@
             z-index: 5;
         }
 
-        /* Media Query for phones */
         @media (max-width: 480px) {
             h1 {
                 font-size: 20px;
@@ -176,28 +196,36 @@
                 font-size: 18px;
             }
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Background Video -->
     <video class="background-video" id="bg-video" autoplay loop muted>
         <source src="background.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Background Music -->
     <audio id="bg-music" loop>
         <source src="gg.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Enter Button Screen -->
     <div id="enterScreen">
         <button onclick="startExperience()">Enter</button>
     </div>
 
-    <!-- Main Content -->
     <div id="mainContent">
         <div class="profile-box">
             <img src="profile.jpg" alt="Rushikesh Profile">
@@ -212,6 +240,11 @@
                 <a href="https://www.snapchat.com/add/rushiiiii_2410?share_id=98PeygkDrhE&locale=en-GB" target="_blank"><i class="fab fa-snapchat"></i></a>
                 <a href="https://s.team/p/fthq-rjfd/MJQGKDHH" target="_blank"><i class="fab fa-steam"></i></a>
                 <a href="https://www.twitch.tv/gamerealmroyalex" target="_blank"><i class="fab fa-twitch"></i></a>
+            </div>
+
+            <!-- Sexy Discord Status -->
+            <div class="discord-status">
+                <img src="https://lanyard.cnrad.dev/api/583689200382246933?bg=0d0d0d&borderRadius=12px&idleMessage=Offline%20😴" alt="Discord  Presence Status">
             </div>
         </div>
     </div>
