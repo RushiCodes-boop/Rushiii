@@ -1,3 +1,14 @@
+<?php
+// View counter logic
+$counterFile = 'counter.txt';
+if (!file_exists($counterFile)) {
+  file_put_contents($counterFile, '0');
+}
+$views = (int)file_get_contents($counterFile);
+$views++;
+file_put_contents($counterFile, $views);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +26,6 @@
       position: relative;
       color: white;
     }
-
     video.background-video {
       position: absolute;
       top: 50%; left: 50%;
@@ -27,7 +37,6 @@
       visibility: hidden;
       transition: opacity 1.5s ease;
     }
-
     #enterScreen {
       height: 100vh; width: 100%;
       background-color: #0d0d0d;
@@ -38,7 +47,6 @@
       text-align: center;
       padding: 20px;
     }
-
     #enterScreen button {
       padding: 15px 30px;
       font-size: 20px;
@@ -54,7 +62,6 @@
       background: #00ccbb;
       transform: scale(1.1);
     }
-
     #mainContent {
       display: none;
       height: 100vh; width: 100%;
@@ -65,7 +72,6 @@
       padding: 20px;
       z-index: 1;
     }
-
     .profile-box {
       background: rgba(0, 0, 0, 0.5);
       padding: 30px;
@@ -75,7 +81,6 @@
       max-width: 420px; width: 100%;
       animation: fadeIn 1.5s ease-in-out;
     }
-
     img {
       width: 120px; height: 120px;
       border-radius: 50%;
@@ -84,16 +89,13 @@
       margin-bottom: 20px;
       box-shadow: 0 0 20px rgba(0, 255, 234, 0.7);
     }
-
     h1 { font-size: 24px; margin-bottom: 8px; }
     p { font-size: 16px; color: #ccc; margin-bottom: 20px; }
-
     .social-links {
       display: flex; flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
     }
-
     .social-links a {
       display: flex; align-items: center; justify-content: center;
       width: 50px; height: 50px;
@@ -105,14 +107,12 @@
       border: 2px solid #333;
       transition: 0.3s;
     }
-
     .social-links a:hover {
       background: #00ffea;
       color: #0d0d0d;
       transform: scale(1.1);
       border-color: #00ffea;
     }
-
     .footer {
       position: fixed;
       bottom: 10px;
@@ -122,7 +122,6 @@
       font-size: 14px;
       z-index: 5;
     }
-
     @media (max-width: 480px) {
       h1 { font-size: 20px; }
       p { font-size: 14px; }
@@ -133,7 +132,6 @@
         font-size: 18px;
       }
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -175,19 +173,16 @@
 </div>
 
 <footer class="footer">
-  Designed by Rushikesh
+  Designed by Rushikesh • <?php echo number_format($views); ?> Views
 </footer>
 
 <script>
   function startExperience() {
     document.getElementById('enterScreen').style.display = 'none';
-
     const video = document.getElementById('bg-video');
     video.style.visibility = 'visible';
     video.style.opacity = '1';
-
     document.getElementById('mainContent').style.display = 'flex';
-
     const music = document.getElementById('bg-music');
     music.play().catch(err => console.log("Autoplay blocked:", err));
   }
