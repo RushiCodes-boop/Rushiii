@@ -2,13 +2,12 @@
 // View counter logic
 $counterFile = 'counter.txt';
 if (!file_exists($counterFile)) {
-  file_put_contents($counterFile, '0');
+    file_put_contents($counterFile, '0');
 }
 $views = (int)file_get_contents($counterFile);
 $views++;
 file_put_contents($counterFile, $views);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,56 +139,10 @@ file_put_contents($counterFile, $views);
 </head>
 <body>
 
-<video class="background-video" id="bg-video" autoplay loop muted>
+<video class="background-video" id="bg-video" autoplay loop muted playsinline>
   <source src="background.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 <audio id="bg-music" loop>
-  <source src="gg.mp3" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
-
-<div id="enterScreen">
-  <button onclick="startExperience()">Enter</button>
-</div>
-
-<div id="mainContent">
-  <div class="profile-box">
-    <img src="profile.jpg" alt="Rushikesh Profile">
-    <h1>Rushikesh Chandanshiv</h1>
-    <p>Just a creator hanging out 🎮🎵</p>
-
-    <div class="social-links">
-      <a href="https://www.youtube.com/@astargaming647/featured" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://discord.com/users/583689200382246933" target="_blank"><i class="fab fa-discord"></i></a>
-      <a href="https://www.instagram.com/rushiiii2410" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://open.spotify.com/user/31kx7vyawtdinz7tvp4jbef4vcpe" target="_blank"><i class="fab fa-spotify"></i></a>
-      <a href="https://www.snapchat.com/add/rushiiiii_2410" target="_blank"><i class="fab fa-snapchat"></i></a>
-      <a href="https://s.team/p/fthq-rjfd/MJQGKDHH" target="_blank"><i class="fab fa-steam"></i></a>
-      <a href="https://www.twitch.tv/gamerealmroyalex" target="_blank"><i class="fab fa-twitch"></i></a>
-    </div>
-  </div>
-</div>
-
-<footer class="footer">
-  Designed by Rushikesh • <?php echo number_format($views); ?> Views
-</footer>
-
-<script>
-  function startExperience() {
-    document.getElementById('enterScreen').style.display = 'none';
-    const video = document.getElementById('bg-video');
-    video.style.visibility = 'visible';
-    video.style.opacity = '1';
-    document.getElementById('mainContent').style.display = 'flex';
-    const music = document.getElementById('bg-music');
-    music.play().catch(err => {
-      console.log("Autoplay blocked:", err);
-      alert("Please enable autoplay for a better experience.");
-    });
-  }
-</script>
-
-</body>
-</html>
+  <source src="gg.mp
