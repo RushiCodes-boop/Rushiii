@@ -175,9 +175,6 @@ file_put_contents($counterFile, $views);
 <footer class="footer">
   Designed by Rushikesh • <?php echo number_format($views); ?> Views
 </footer>
-<!-- hitwebcounter Code START -->
-<a href="https://www.hitwebcounter.com" target="_blank">
-<img src="https://hitwebcounter.com/counter/counter.php?page=20541842&style=0047&nbdigits=8&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a> 
 
 <script>
   function startExperience() {
@@ -187,7 +184,10 @@ file_put_contents($counterFile, $views);
     video.style.opacity = '1';
     document.getElementById('mainContent').style.display = 'flex';
     const music = document.getElementById('bg-music');
-    music.play().catch(err => console.log("Autoplay blocked:", err));
+    music.play().catch(err => {
+      console.log("Autoplay blocked:", err);
+      alert("Please enable autoplay for a better experience.");
+    });
   }
 </script>
 
