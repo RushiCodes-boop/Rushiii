@@ -1,30 +1,195 @@
-﻿<?php
-// Database configuration
-$host = 'localhost';       // Usually localhost
-$db   = 'visitor_counter'; // Database name
-$user = 'root';            // Database username
-$pass = '';                // Database password (empty for XAMPP)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rushikesh Chandanshiv</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      background-color: #0d0d0d;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+    video.background-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.5s ease;
+    }
+    #enterScreen {
+      height: 100vh; width: 100%;
+      background-color: #0d0d0d;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      z-index: 10;
+      position: absolute; top: 0; left: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    #enterScreen button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background: #00ffea;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      color: #0d0d0d;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    #enterScreen button:hover {
+      background: #00ccbb;
+      transform: scale(1.1);
+    }
+    #mainContent {
+      display: none;
+      min-height: 100vh; width: 100%;
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative;
+      text-align: center;
+      padding: 20px;
+      z-index: 1;
+    }
+    .profile-box {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 255, 234, 0.4);
+      max-width: 420px; width: 100%;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    img {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(0, 255, 234, 0.7);
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 234, 0.7);
+    }
+    h1 { font-size: 24px; margin-bottom: 8px; }
+    p { font-size: 16px; color: #ccc; margin-bottom: 20px; }
+    .social-links {
+      display: flex; flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .social-links a {
+      display: flex; align-items: center; justify-content: center;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      color: white;
+      font-size: 22px;
+      text-decoration: none;
+      border: 2px solid #333;
+      transition: 0.3s;
+    }
+    .social-links a:hover {
+      background: #00ffea;
+      color: #0d0d0d;
+      transform: scale(1.1);
+      border-color: #00ffea;
+    }
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: #00ffea;
+      font-size: 14px;
+      z-index: 5;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 20px; }
+      p { font-size: 14px; }
+      .profile-box { padding: 20px; }
+      img { width: 100px; height: 100px; }
+      .social-links a {
+        width: 45px; height: 45px;
+        font-size: 18px;
+      }
+    }
+    @media (max-width: 480px) {
+      .profile-box {
+        max-width: 90%;
+        padding: 15px;
+      }
+      h1 { font-size: 18px; }
+      p { font-size: 13px; }
+      .social-links {
+        gap: 10px;
+      }
+      .social-links a {
+        width: 40px; height: 40px;
+        font-size: 16px;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
 
-// Create connection
-$conn = new mysqli($host, $user, $pass, $db);
+<video class="background-video" id="bg-video" autoplay loop muted playsinline>
+  <source src="background.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+<audio id="bg-music" loop>
+  <source src="gg.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
 
-// Insert a new visit
-$insert = "INSERT INTO visits () VALUES ()";
-$conn->query($insert);
+<div id="enterScreen">
+  <button onclick="startExperience()">Enter</button>
+</div>
 
-// Get total visit count
-$result = $conn->query("SELECT COUNT(*) AS total FROM visits");
-$row = $result->fetch_assoc();
-$totalVisits = $row['total'];
+<div id="mainContent">
+  <div class="profile-box">
+    <img src="profile.jpg" alt="Rushikesh Profile">
+    <h1>Rushikesh Chandanshiv</h1>
+    <p>Just a creator hanging out 🎮🎵</p>
 
-// Output the visit count
-echo "<div style='color:#00ffea; font-size:16px; margin-top:15px;'>👁️ Total Visitors: <strong>$totalVisits</strong></div>";
+    <div class="social-links">
+      <a href="https://www.youtube.com/@astargaming647/featured" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://discord.com/users/583689200382246933" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://www.instagram.com/rushiiii2410" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://open.spotify.com/user/31kx7vyawtdinz7tvp4jbef4vcpe" target="_blank"><i class="fab fa-spotify"></i></a>
+      <a href="https://www.snapchat.com/add/rushiiiii_2410" target="_blank"><i class="fab fa-snapchat"></i></a>
+      <a href="https://s.team/p/fthq-rjfd/MJQGKDHH" target="_blank"><i class="fab fa-steam"></i></a>
+      <a href="https://www.twitch.tv/gamerealmroyalex" target="_blank"><i class="fab fa-twitch"></i></a>
+    </div>
+  </div>
+</div>
 
-// Close connection
-$conn->close();
-?>
+<footer class="footer">
+  Designed by Rushikesh • <?php echo number_format($views); ?> Views
+</footer>
+
+<script>
+  function startExperience() {
+    document.getElementById('enterScreen').style.display = 'none';
+    const video = document.getElementById('bg-video');
+    video.style.visibility = 'visible';
+    video.style.opacity = '1';
+    document.getElementById('mainContent').style.display = 'flex';
+    const music = document.getElementById('bg-music');
+    music.play().catch(err => console.log("Autoplay blocked:", err));
+  }
+</script>
+
+</body>
+</html>
