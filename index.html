@@ -1,240 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rushikesh Chandanshiv</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rushikesh Chandanshiv</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        body {
+            height: 100vh;
+            background-color: #0d0d0d;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+            color: white;
+        }
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-13265032468"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-13265032468');
-</script>
+        video.background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease;
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+        #enterScreen {
+            height: 100vh;
+            width: 100%;
+            background-color: #0d0d0d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            padding: 20px;
+        }
 
-body{
-min-height:100svh;
-background:#0d0d0d;
-font-family:Poppins,sans-serif;
-color:#fff;
-overflow-x:hidden;
-}
+            #enterScreen button {
+                padding: 15px 30px;
+                font-size: 20px;
+                background: #00ffea;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                color: #0d0d0d;
+                font-weight: bold;
+                transition: 0.3s;
+            }
 
-/* Background video */
-video{
-position:fixed;
-top:0;left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-2;
-opacity:0;
-transition:1.2s;
-}
+                #enterScreen button:hover {
+                    background: #00ccbb;
+                    transform: scale(1.1);
+                }
 
-/* Enter screen */
-#enterScreen{
-position:fixed;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#0d0d0d;
-z-index:10;
-}
-#enterScreen button{
-padding:14px 36px;
-font-size:18px;
-border:none;
-border-radius:50px;
-background:#00ffea;
-font-weight:700;
-cursor:pointer;
-}
+        #mainContent {
+            display: none;
+            height: 100vh;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            z-index: 1;
+        }
 
-/* Main content */
-#mainContent{
-display:none;
-min-height:100svh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-}
+        .profile-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 234, 0.4);
+            max-width: 420px;
+            width: 100%;
+            animation: fadeIn 1.5s ease-in-out;
+        }
 
-.profile-box{
-width:100%;
-max-width:380px;
-background:rgba(0,0,0,.65);
-padding:22px;
-border-radius:18px;
-backdrop-filter:blur(10px);
-box-shadow:0 0 20px rgba(0,255,234,.35);
-text-align:center;
-}
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(0, 255, 234, 0.7);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 234, 0.7);
+        }
 
-/* Profile image */
-.profile-box img{
-width:96px;
-height:96px;
-border-radius:50%;
-border:3px solid #00ffea;
-box-shadow:0 0 15px #00ffea;
-margin-bottom:12px;
-}
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
 
-/* Text */
-h1{
-font-size:20px;
-margin-bottom:6px;
-}
-#typing{
-font-size:14px;
-color:#00ffea;
-margin-bottom:14px;
-}
+        p {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
 
-/* Social icons */
-.social-links{
-display:flex;
-justify-content:center;
-gap:12px;
-flex-wrap:wrap;
-}
-.social-links a{
-width:42px;
-height:42px;
-border-radius:50%;
-background:#1a1a1a;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:18px;
-color:#fff;
-border:1px solid #333;
-}
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
 
-/* Buttons */
-.buttons{
-margin-top:16px;
-display:flex;
-gap:10px;
-justify-content:center;
-flex-wrap:wrap;
-}
-.btn{
-padding:8px 16px;
-border-radius:20px;
-border:1px solid #00ffea;
-color:#00ffea;
-font-size:14px;
-cursor:pointer;
-}
+            .social-links a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: #1a1a1a;
+                color: white;
+                font-size: 22px;
+                transition: 0.3s;
+                text-decoration: none;
+                border: 2px solid #333;
+            }
 
-/* Footer */
-.footer{
-position:fixed;
-bottom:8px;
-width:100%;
-text-align:center;
-font-size:12px;
-color:#00ffea;
-}
+                .social-links a:hover {
+                    background: #00ffea;
+                    color: #0d0d0d;
+                    transform: scale(1.1);
+                    border-color: #00ffea;
+                }
 
-/* Desktop enhancement */
-@media (min-width:768px){
-.profile-box{
-padding:30px;
-}
-.profile-box img{
-width:120px;
-height:120px;
-}
-h1{font-size:24px}
-#typing{font-size:16px}
-.social-links a{
-width:50px;height:50px;font-size:22px
-}
-.btn{font-size:15px;padding:10px 20px}
-}
-</style>
+        .discord-status {
+            margin-top: 25px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+            .discord-status img {
+                width: 100%;
+                max-width: 380px;
+                border-radius: 12px;
+                border: 2px solid #00ffea;
+                box-shadow: 0 0 15px rgba(0, 255, 234, 0.6), 0 0 25px rgba(0, 255, 234, 0.3);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+                .discord-status img:hover {
+                    transform: scale(1.02);
+                    box-shadow: 0 0 25px rgba(0, 255, 234, 0.8), 0 0 45px rgba(0, 255, 234, 0.4);
+                }
+
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: #00ffea;
+            font-size: 14px;
+            z-index: 5;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .profile-box {
+                padding: 20px;
+            }
+
+            img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<video id="bg-video" autoplay loop muted>
-<source src="background.mp4" type="video/mp4">
-</video>
+    <video class="background-video" id="bg-video" autoplay loop muted>
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<audio id="bg-music" loop>
-<source src="gg.mp3" type="audio/mp3">
-</audio>
+    <audio id="bg-music" loop>
+        <source src="gg.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
-<div id="enterScreen">
-<button onclick="startExperience()">ENTER</button>
-</div>
+    <div id="enterScreen">
+        <button onclick="startExperience()">Enter</button>
+    </div>
 
-<div id="mainContent">
-<div class="profile-box">
-<img src="profile.jpg">
-<h1>Rushikesh Chandanshiv</h1>
-<div id="typing"></div>
+    <div id="mainContent">
+        <div class="profile-box">
+            <img src="profile.jpg" alt="Rushikesh Profile">
+            <h1>Rushikesh Chandanshiv</h1>
+            <p>🎮 Creator | 🎵 Music Lover | 💻 Tech Enthusiast
 
-<div class="social-links">
-<a href="#"><i class="fab fa-youtube"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-discord"></i></a>
-<a href="#"><i class="fab fa-twitch"></i></a>
-</div>
+Just a creator hanging out, making cool things and vibing with my favorite games and tunes. Join me on this journey—let's create, play, and enjoy the moments together!</p>
 
-<div class="buttons">
-<div class="btn" onclick="toggleMusic()">🎵 Music</div>
-<div class="btn">💻 Projects</div>
-</div>
-</div>
-</div>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@astargaming647/featured" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.com/users/583689200382246933" target="_blank"><i class="fab fa-discord"></i></a>
+                <a href="https://www.instagram.com/rushiiii2410" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://open.spotify.com/user/31kx7vyawtdinz7tvp4jbef4vcpe?si=ZQwjibg2TAibEhltw-R9Uw" target="_blank"><i class="fab fa-spotify"></i></a>
+                <a href="https://www.snapchat.com/add/rushiiiii_2410?share_id=98PeygkDrhE&locale=en-GB" target="_blank"><i class="fab fa-snapchat"></i></a>
+                <a href="https://s.team/p/fthq-rjfd/MJQGKDHH" target="_blank"><i class="fab fa-steam"></i></a>
+                <a href="https://www.twitch.tv/gamerealmroyalex" target="_blank"><i class="fab fa-twitch"></i></a>
+            </div>         
+        </div>
+    </div>
 
-<footer class="footer">
-<span id="views">0</span> Views
-</footer>
+    <footer class="footer">
+        Designed by Rushikesh
+    </footer>
 
-<script>
-function startExperience(){
-enterScreen.style.display="none";
-bgVideo.style.opacity=1;
-mainContent.style.display="flex";
-bgMusic.play().catch(()=>{});
-}
+    <script>
+        function startExperience() {
+            document.getElementById('enterScreen').style.display = 'none';
 
-/* Typing effect */
-const texts=["🎮 Creator","🎵 Music Lover","💻 Tech Enthusiast"];
-let i=0,j=0,del=false;
-setInterval(()=>{
-let t=texts[i];
-typing.innerText=t.slice(0,j);
-if(!del && j++>t.length+5)del=true;
-if(del && j--<=0){del=false;i=(i+1)%texts.length}
-},120);
+            const video = document.getElementById('bg-video');
+            video.style.visibility = 'visible';
+            video.style.opacity = '1';
 
-/* Music toggle */
-let play=true;
-function toggleMusic(){
-play?bgMusic.pause():bgMusic.play();
-play=!play;
-}
+            document.getElementById('mainContent').style.display = 'flex';
 
-/* View counter */
-fetch("https://api.countapi.xyz/hit/rushiii/mobile")
-.then(r=>r.json())
-.then(d=>views.innerText=d.value);
-</script>
+            var music = document.getElementById('bg-music');
+            music.play();
+        }
+    </script>
 
 </body>
 </html>
