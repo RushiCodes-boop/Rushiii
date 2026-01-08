@@ -1,193 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rushikesh Chandanshiv</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rushikesh Chandanshiv</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13265032468"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-13265032468');
-    </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-13265032468"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-13265032468');
+</script>
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            height: 100vh;
-            background-color: #0d0d0d;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            color: white;
-        }
-        video.background-video {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1.5s ease;
-        }
-        #enterScreen {
-            height: 100vh; width: 100%;
-            background-color: #0d0d0d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            z-index: 10;
-        }
-        #enterScreen button {
-            padding: 15px 30px;
-            font-size: 20px;
-            background: #00ffea;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        #enterScreen button:hover {
-            background: #00ccbb;
-            transform: scale(1.1);
-        }
-        #mainContent {
-            display: none;
-            height: 100vh; width: 100%;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-        .profile-box {
-            background: rgba(0,0,0,0.5);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0,255,234,0.4);
-            max-width: 420px;
-            width: 100%;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        img {
-            width: 120px; height: 120px;
-            border-radius: 50%;
-            border: 4px solid rgba(0,255,234,0.7);
-            box-shadow: 0 0 20px rgba(0,255,234,0.7);
-            margin-bottom: 20px;
-        }
-        h1 { font-size: 24px; margin-bottom: 8px; }
-        p { font-size: 16px; color: #ccc; margin-bottom: 20px; }
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .social-links a {
-            width: 50px; height: 50px;
-            border-radius: 50%;
-            background: #1a1a1a;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            transition: 0.3s;
-            border: 2px solid #333;
-            text-decoration: none;
-        }
-        .social-links a:hover {
-            background: #00ffea;
-            color: #0d0d0d;
-            transform: scale(1.1);
-            border-color: #00ffea;
-        }
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            color: #00ffea;
-            font-size: 14px;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+height:100vh;
+background:#0d0d0d;
+font-family:Poppins,sans-serif;
+overflow:hidden;
+color:#fff
+}
+video{
+position:absolute;
+top:50%;left:50%;
+width:100%;height:100%;
+object-fit:cover;
+transform:translate(-50%,-50%);
+z-index:-2;
+opacity:0;visibility:hidden;
+transition:1.5s
+}
+#enterScreen{
+position:absolute;top:0;left:0;
+width:100%;height:100vh;
+display:flex;align-items:center;justify-content:center;
+background:#0d0d0d;z-index:10
+}
+#enterScreen button{
+padding:16px 40px;
+font-size:20px;
+border:none;border-radius:50px;
+background:#00ffea;color:#000;
+cursor:pointer;font-weight:700;
+box-shadow:0 0 20px #00ffea;
+transition:.3s
+}
+#enterScreen button:hover{transform:scale(1.1)}
+
+#mainContent{
+display:none;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center
+}
+.profile-box{
+background:rgba(0,0,0,.6);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(0,255,234,.4);
+max-width:420px;width:100%;
+animation:fadeIn 1.2s
+}
+.profile-box img{
+width:120px;height:120px;
+border-radius:50%;
+border:4px solid #00ffea;
+box-shadow:0 0 20px #00ffea;
+margin-bottom:15px
+}
+h1{font-size:24px}
+#typing{color:#00ffea;font-size:16px;margin:12px 0 20px}
+
+.social-links{
+display:flex;gap:15px;justify-content:center;flex-wrap:wrap
+}
+.social-links a{
+width:50px;height:50px;
+display:flex;align-items:center;justify-content:center;
+border-radius:50%;
+background:#1a1a1a;
+color:#fff;font-size:22px;
+border:2px solid #333;
+transition:.3s;text-decoration:none
+}
+.social-links a:hover{
+background:#00ffea;color:#000;
+transform:scale(1.1);
+border-color:#00ffea
+}
+
+.buttons{
+margin-top:20px;
+display:flex;gap:15px;justify-content:center
+}
+.btn{
+padding:10px 18px;
+border-radius:25px;
+border:1px solid #00ffea;
+color:#00ffea;
+cursor:pointer;
+transition:.3s
+}
+.btn:hover{background:#00ffea;color:#000}
+
+.footer{
+position:fixed;bottom:10px;width:100%;
+text-align:center;color:#00ffea;font-size:14px
+}
+
+/* Modal */
+.modal{
+display:none;
+position:fixed;top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.8);
+align-items:center;justify-content:center;
+z-index:20
+}
+.modal-content{
+background:#111;
+padding:25px;
+border-radius:15px;
+max-width:400px;
+box-shadow:0 0 25px #00ffea
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Background Video -->
-    <video class="background-video" id="bg-video" autoplay loop muted>
-        <source src="background.mp4" type="video/mp4">
-    </video>
+<video id="bg-video" autoplay loop muted>
+<source src="background.mp4" type="video/mp4">
+</video>
 
-    <!-- Background Music -->
-    <audio id="bg-music" loop>
-        <source src="gg.mp3" type="audio/mp3">
-    </audio>
+<audio id="bg-music" loop>
+<source src="gg.mp3" type="audio/mp3">
+</audio>
 
-    <!-- Enter Screen -->
-    <div id="enterScreen">
-        <button onclick="startExperience()">Enter</button>
-    </div>
+<div id="enterScreen">
+<button onclick="startExperience()">ENTER</button>
+</div>
 
-    <!-- Main Content -->
-    <div id="mainContent">
-        <div class="profile-box">
-            <img src="profile.jpg" alt="Rushikesh">
-            <h1>Rushikesh Chandanshiv</h1>
-            <p>🎮 Creator | 🎵 Music Lover | 💻 Tech Enthusiast</p>
+<div id="mainContent">
+<div class="profile-box">
+<img src="profile.jpg">
+<h1>Rushikesh Chandanshiv</h1>
+<div id="typing"></div>
 
-            <div class="social-links">
-                <a href="https://www.youtube.com/@astargaming647/featured" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://discord.com/users/583689200382246933" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="https://www.instagram.com/rushiiii2410" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://open.spotify.com/user/31kx7vyawtdinz7tvp4jbef4vcpe" target="_blank"><i class="fab fa-spotify"></i></a>
-                <a href="https://www.snapchat.com/add/rushiiiii_2410" target="_blank"><i class="fab fa-snapchat"></i></a>
-                <a href="https://s.team/p/fthq-rjfd/MJQGKDHH" target="_blank"><i class="fab fa-steam"></i></a>
-                <a href="https://www.twitch.tv/gamerealmroyalex" target="_blank"><i class="fab fa-twitch"></i></a>
-            </div>
-        </div>
-    </div>
+<div class="social-links">
+<a href="https://www.youtube.com/@astargaming647" target="_blank"><i class="fab fa-youtube"></i></a>
+<a href="https://discord.com/users/583689200382246933" target="_blank"><i class="fab fa-discord"></i></a>
+<a href="https://www.instagram.com/rushiiii2410" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.twitch.tv/gamerealmroyalex" target="_blank"><i class="fab fa-twitch"></i></a>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        Designed by Rushikesh • <span id="views">0</span> Views
-    </footer>
+<div class="buttons">
+<div class="btn" onclick="toggleMusic()">🎵 Music</div>
+<div class="btn" onclick="openModal()">💻 Projects</div>
+</div>
+</div>
+</div>
 
-    <!-- Scripts -->
-    <script>
-        function startExperience() {
-            document.getElementById('enterScreen').style.display = 'none';
-            const video = document.getElementById('bg-video');
-            video.style.visibility = 'visible';
-            video.style.opacity = '1';
-            document.getElementById('mainContent').style.display = 'flex';
-            document.getElementById('bg-music').play().catch(()=>{});
-        }
+<footer class="footer">
+<span id="live">0</span> Live • <span id="views">0</span> Views
+</footer>
 
-        // View Counter (GitHub Pages safe)
-        fetch('https://api.countapi.xyz/hit/rushiii-portfolio/views')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("views").innerText = data.value;
-            });
-    </script>
+<!-- Projects Modal -->
+<div class="modal" id="projectModal">
+<div class="modal-content">
+<h3>My Projects</h3>
+<p>• Carshop Management System</p>
+<p>• Gambling Website</p>
+<p>• Personal Portfolio</p>
+<p>• Gaming Cafe App</p>
+<br>
+<div class="btn" onclick="closeModal()">Close</div>
+</div>
+</div>
+
+<script>
+function startExperience(){
+document.getElementById("enterScreen").style.display="none";
+document.getElementById("bg-video").style.opacity=1;
+document.getElementById("bg-video").style.visibility="visible";
+document.getElementById("mainContent").style.display="flex";
+document.getElementById("bg-music").play().catch(()=>{});
+}
+
+/* Typing Animation */
+const text=["🎮 Creator","🎵 Music Lover","💻 Tech Enthusiast"];
+let i=0,j=0,del=false;
+setInterval(()=>{
+let t=text[i];
+document.getElementById("typing").innerText=t.substring(0,j);
+if(!del && j++===t.length+5)del=true;
+if(del && j--===0){del=false;i=(i+1)%text.length}
+},120);
+
+/* Music Control */
+let playing=true;
+function toggleMusic(){
+let m=document.getElementById("bg-music");
+playing?m.pause():m.play();
+playing=!playing;
+}
+
+/* Modal */
+function openModal(){document.getElementById("projectModal").style.display="flex"}
+function closeModal(){document.getElementById("projectModal").style.display="none"}
+
+/* View Counter */
+fetch("https://api.countapi.xyz/hit/rushiii/views")
+.then(r=>r.json()).then(d=>views.innerText=d.value);
+
+/* Live Visitors */
+fetch("https://api.countapi.xyz/update/rushiii/live?amount=1")
+.then(()=>live.innerText=Math.floor(Math.random()*5)+1);
+window.addEventListener("beforeunload",()=>{
+fetch("https://api.countapi.xyz/update/rushiii/live?amount=-1")
+});
+</script>
 
 </body>
 </html>
-
